@@ -1,6 +1,6 @@
-import { Form, Field } from '@leveluptuts/fresh';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { Form, Field } from '@leveluptuts/fresh'
+import { useMutation } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 
 const ADD_HABIT = gql`
   mutation addHabit($habit: HabitInput) {
@@ -9,28 +9,28 @@ const ADD_HABIT = gql`
       name
     }
   }
-`;
+`
 
 const HabitForm = () => {
   const [addHabit] = useMutation(ADD_HABIT, {
-    refetchQueries: ['getHabits']
-  });
+    refetchQueries: ['getHabits'],
+  })
 
   return (
     <Form
-      onSubmit={data => {
+      onSubmit={(data) => {
         addHabit({
           variables: {
             habit: {
-              name: data.habit
-            }
-          }
-        });
+              name: data.habit,
+            },
+          },
+        })
       }}
     >
       <Field>Habit</Field>
     </Form>
-  );
-};
+  )
+}
 
-export default HabitForm;
+export default HabitForm
